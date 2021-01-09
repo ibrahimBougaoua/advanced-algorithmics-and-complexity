@@ -29,20 +29,19 @@ int main()
 	printf("Enter you'r number : ");
 	scanf("%d",&n);
 	
+    // Calculate the time spent by primeNumber(n) 
+    clock_t begin = clock();
+    
 	if( primeNumber(n) == 1 )
 	    printf("This is a prime number");
 	else
 	    printf("This isn't a prime number");
 	
-	puts("");
-	
-    // Calculate the time spent by primeNumber(n) 
-    clock_t begin = clock();
-    
-    primeNumber(n);
-	
 	clock_t end = clock();
-    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    
+    puts(" ");
   
     printf("primeNumber(n) took %f seconds to execute \n", time_spent); 
 	
