@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 int primeNumber(int n)
 {
@@ -32,6 +33,18 @@ int main()
 	    printf("This is a prime number");
 	else
 	    printf("This isn't a prime number");
+	
+	puts("");
+	
+    // Calculate the time spent by primeNumber(n) 
+    clock_t begin = clock();
+    
+    primeNumber(n);
+	
+	clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+  
+    printf("primeNumber(n) took %f seconds to execute \n", time_spent); 
 	
 	return 0;
 }
