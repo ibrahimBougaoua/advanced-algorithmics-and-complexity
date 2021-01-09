@@ -14,8 +14,6 @@ int primeNumber(int n)
 	
 	max = sqrt(n);
 	
-	printf("%d",max);
-	
 	while( (i <= max ) && (n % i) != 0 )
 	{
 		i++;
