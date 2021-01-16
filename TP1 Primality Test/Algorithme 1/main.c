@@ -1,38 +1,23 @@
 #include <stdio.h>
 #include <time.h>
 
-// f(n) = 1 + 3 + 1 + 1 + 1 + n - 1 + 2*(n-2) + 1 + n - 2 + 1 + 1 + 1
-// f(n) = 4n + 4
+// Au paire cas :
+// f(n) = 1 + 1 + n + 1 + 2*n + 2*(n/2+1) + 2*n
+// f(n) = 6n + 5
 
-// f(n) = 1 + 3 + 1 + 1 + 1 + n - 1 + 2 + 1 + n - 2 + 1 + 1 + 1
-// f(n) = 2n + 10
+// T(n) = (6n + 5)*Dt
+// Dt = T(n)/(6n + 5)
 
-void primeNumber(int n)
-{
-	int i = 2; // 1
-	
-	if( (n == 0) || (n == 1) ) // 3 
-	   printf("This isn't a prime number"); // 1
-	    
-	if( n == 2 ) // 1
-	   printf("This is a prime number"); // 1
-	
-	while( i < n ) // n-1
-	{
-		if((n % i) == 0) // 2*(n-2) or 2
-			break; // 1
-		i++; // n-2
-	}
-	
-	if( i == n ) // 1
-	  printf("This is a prime number"); // 1
-	else
-	  printf("This isn't a prime number"); // 1
-}
+// Au meilleur cas :
+// f(n) = 1 + 1 + n + 1 + 2*n + 2*2 + 2*n
+// f(n) = 5n + 7
+
+// T(n) = (5n + 7)*Dt
+// Dt = T(n)/(5n + 7)
 
 int main()
 {
-	int n;
+	int n,i,nbr; 
 	
 	printf("Enter you'r number : ");
 	scanf("%d",&n);
@@ -40,15 +25,29 @@ int main()
     // Calculate the time spent by primeNumber(n) 
     clock_t begin = clock();
     
-	primeNumber(n);
+	i = 1; // 1
+	nbr = 0; // 1
+	
+	while( i <= n ) // n+1
+	{
+		if((n % i) == 0) // 2*n
+			nbr++; // 2*(n/2+1) or 2*2
+			
+		i++; // 2*n
+	}
 	    
 	clock_t end = clock();
     
 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     
+	if( nbr == 2 )
+	  printf("This is a prime number");
+	else
+	  printf("This isn't a prime number");
+	  
     puts(" ");
   
-    printf("primeNumber(n) took %f seconds to execute \n", time_spent); 
+    printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 	
 	return 0;
 }
