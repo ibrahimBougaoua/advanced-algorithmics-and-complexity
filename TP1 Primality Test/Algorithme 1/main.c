@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 
-// Au paire cas :
+// Au pire cas :
 // f(n) = 1 + 1 + n + 1 + 2*n + 2*(n/2+1) + 2*n
 // f(n) = 6n + 5
 
