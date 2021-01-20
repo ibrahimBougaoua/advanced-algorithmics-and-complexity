@@ -64,9 +64,33 @@ void rechEletsTabTries(int *tab,int n,int value)
 	} else {
 		printf("This value doesn't exists : value =  %d",value); // 1
 	}
-		
 }
 
+void rechEletsDicho(int *tab,int n,int value)
+{
+	int i = 1,m; // 1
+	
+	if( (tab[i] <= value) && (tab[n] >= value) ) // 3
+	{
+		while( i <= n )
+		{
+			m = n/2;
+			if(tab[m] == value) {
+				break;
+			} else if( tab[m] > value ) {
+				i = m + 1;
+			} else {
+				n = m - 1;
+			}
+		}
+		if( i > n ) // 1
+		    printf("This value doesn't exists : value =  %d",value); // 1
+		else
+		    printf("This value exists : value =  %d",value); // 1
+	} else {
+		printf("This value doesn't exists : value =  %d",value); // 1
+	}
+}
 int main()
 {
 	int i = 1,n = 100;
@@ -81,6 +105,7 @@ int main()
 	
 	//rechEletsTabNonTries(tab,n,101);
 	//rechEletsTabTries(tab,n,10);
+	rechEletsDicho(tab,n,10);
 	 
 	return 0;
 }
