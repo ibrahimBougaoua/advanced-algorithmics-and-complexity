@@ -26,9 +26,9 @@ void rechEletsTabNonTries(int *tab,int n,int value)
 	}
 	
 	if( i > n ) // 1
-	    printf("This value doesn't exists : value =  %d",value); // 1
+	    printf("This value doesn't exists : value =  %d \n",value); // 1
 	else
-	    printf("This value exists : value =  %d",value); // 1
+	    printf("This value exists : value =  %d \n",value); // 1
 }
 
 // Au pire cas :
@@ -58,39 +58,40 @@ void rechEletsTabTries(int *tab,int n,int value)
 			i++; // 2*n or 0
 		}
 		if( i > n ) // 1
-		    printf("This value doesn't exists : value =  %d",value); // 1
+		    printf("This value doesn't exists : value =  %d \n",value); // 1
 		else
-		    printf("This value exists : value =  %d",value); // 1
+		    printf("This value exists : value =  %d \n",value); // 1
 	} else {
-		printf("This value doesn't exists : value =  %d",value); // 1
+		printf("This value doesn't exists : value =  %d \n",value); // 1
 	}
 }
 
-void rechEletsDicho(int *tab,int n,int value)
+void rechEletsDicho(int *tab,int sup,int value)
 {
-	int i = 1,m; // 1
+	int inf = 1,mil; // 1
 	
-	if( (tab[i] <= value) && (tab[n] >= value) ) // 3
+	if( (tab[inf] <= value) && (tab[sup] >= value) ) // 3
 	{
-		while( i <= n )
+		while( inf < sup )
 		{
-			m = n/2;
-			if(tab[m] == value) {
+			mil = (inf + sup)/2;
+			if(tab[mil] == value) {
 				break;
-			} else if( tab[m] > value ) {
-				i = m + 1;
+			} else if( value > tab[mil] ) {
+				inf = mil + 1;
 			} else {
-				n = m - 1;
+				sup = mil - 1;
 			}
 		}
-		if( i > n ) // 1
-		    printf("This value doesn't exists : value =  %d",value); // 1
+		if( inf > sup ) // 1
+		    printf("This value doesn't exists : value =  %d \n",value); // 1
 		else
-		    printf("This value exists : value =  %d",value); // 1
+		    printf("This value exists : value =  %d \n",value); // 1
 	} else {
-		printf("This value doesn't exists : value =  %d",value); // 1
+		printf("This value doesn't exists : value =  %d \n",value); // 1
 	}
 }
+
 int main()
 {
 	int i = 1,n = 100;
@@ -105,7 +106,12 @@ int main()
 	
 	//rechEletsTabNonTries(tab,n,101);
 	//rechEletsTabTries(tab,n,10);
-	rechEletsDicho(tab,n,10);
+	rechEletsDicho(tab,n,0);
+	rechEletsDicho(tab,n,75);
+	rechEletsDicho(tab,n,1);
+	rechEletsDicho(tab,n,100);
+	rechEletsDicho(tab,n,5);
+	rechEletsDicho(tab,n,101);
 	 
 	return 0;
 }
