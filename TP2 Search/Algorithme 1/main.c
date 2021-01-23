@@ -69,8 +69,8 @@ void rechEletsTabTries(int *tab,int n,int value)
 // Au pire cas :
 // f(n) = Olog(n)
 
-// T(n) = (4n + 7)*Dt
-// Dt = T(n)/(4n + 7)
+// T(n) = log(n)*Dt
+// Dt = T(n)/log(n)
 
 // Au meilleur cas :
 // f(n) = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1
@@ -107,7 +107,7 @@ void rechEletsDicho(int *tab,int sup,int value)
 
 int main()
 {
-	int i = 1,n = 1800000;
+	int i = 1,n = 100000;
 	long int *tab;
 	tab = (long int *)malloc(n*sizeof(long int *));
 	
@@ -120,7 +120,7 @@ int main()
 	// Calculate the time spent by function. 
     clock_t begin = clock();
     
-    rechEletsTabNonTries(tab,n,1800000);
+    rechEletsDicho(tab,n,100000);
 	
 	clock_t end = clock();
     
