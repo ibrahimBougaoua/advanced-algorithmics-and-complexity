@@ -41,7 +41,7 @@ int main()
 	
 	while( i <= n )
 	{
-		tab[i] = i;
+		tab[i] = rand();
 		i++;
 	}
 	
