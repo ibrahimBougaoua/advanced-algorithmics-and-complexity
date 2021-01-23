@@ -107,7 +107,7 @@ void rechEletsDicho(int *tab,int sup,int value)
 
 int main()
 {
-	int i = 1,n = 100000;
+	int i = 1,n = 1800000;
 	long int *tab;
 	tab = (long int *)malloc(n*sizeof(long int *));
 	
@@ -120,7 +120,9 @@ int main()
 	// Calculate the time spent by function. 
     clock_t begin = clock();
     
-    rechEletsDicho(tab,n,100000);
+	//rechEletsTabNonTries(tab,n,101);
+	//rechEletsTabTries(tab,n,10);
+	//rechEletsDicho(tab,n,0);
 	
 	clock_t end = clock();
     
@@ -130,9 +132,5 @@ int main()
   
     printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 	
-	//rechEletsTabNonTries(tab,n,101);
-	//rechEletsTabTries(tab,n,10);
-	//rechEletsDicho(tab,n,0);
-	 
 	return 0;
 }
