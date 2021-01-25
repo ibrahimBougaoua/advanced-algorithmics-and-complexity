@@ -32,11 +32,11 @@ void rechEletsTabNonTries(int *tab,int n,int value)
 }
 
 // Au pire cas :
-// f(n) = 1 + 3 + n + 1 + n + 1 + 2*n - 1 + 1 + 1
-// f(n) = 4n + 7
+// f(n) = 1 + 3 + n + 1 + 2*(n + 1) + 2*n - 1 + 1 + 1
+// f(n) = 6n + 9
 
-// T(n) = (4n + 7)*Dt
-// Dt = T(n)/(4n + 7)
+// T(n) = (6n + 9)*Dt
+// Dt = T(n)/(6n + 9)
 
 // Au meilleur cas :
 // f(n) = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1
@@ -51,7 +51,7 @@ void rechEletsTabTries(int *tab,int n,int value)
 	
 	if( (tab[i] <= value) && (tab[n] >= value) ) // 3
 	{
-		while( i <= n ) // n + 1 or 1
+		while( i <= n && value <= tab[i] ) // 2*(n + 1) or 1
 		{
 			if( tab[i] == value ) // n or 1
 			    break; // 1
@@ -120,9 +120,9 @@ int main()
 	// Calculate the time spent by function. 
     clock_t begin = clock();
     
-	//rechEletsTabNonTries(tab,n,101);
-	//rechEletsTabTries(tab,n,10);
-	//rechEletsDicho(tab,n,0);
+	//rechEletsTabNonTries(tab,n,1800000);
+	//rechEletsTabTries(tab,n,1800000);
+	//rechEletsDicho(tab,n,1800000);
 	
 	clock_t end = clock();
     
