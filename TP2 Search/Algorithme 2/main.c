@@ -17,31 +17,37 @@
 
 void maxEtMinA(int *tab,int n)
 {
-	int i = 1,max = tab[1],min = tab[1]; // 3
+	int i = 0,cpt = 0,max = tab[1],min = tab[1]; // 3
 	
-	while( i <= n ) // n + 1 or 2
+	while( i < n ) // n + 1 or 2
 	{
 		if( tab[i] >= max ) // n or 1
-		    max = tab[i]; // n or 1
+		{
+			cpt++;
+			max = tab[i]; // n or 1
+		}
 		
 		if( tab[i] <= min ) // n or 1
-		    min = tab[i]; //n or 1
-		
+		{
+			cpt++;
+			min = tab[i]; //n or 1
+		}
+
 		i++; // 2*n or 2
 	}
 	
-	printf("Max = %d et Min = %d \n",max,min); // 1
+	printf("Max = %d et Min = %d / Counting = %d \n",max,min,cpt); // 1
 }
 
 void maxEtMinB(int *tab,int n)
 {
 	int i = 0,cpt = 0,x = 0,max,min; // 3
 	
-	while( i < n-1 ) // n/2
+	while( i < n-1 ) // n
 	{
 		if( tab[i] > tab[i+1] ) // n or 1
 		{
-			cpt++;
+			cpt++; 
 		    x = tab[i];
 		    tab[i] = tab[i+1];
 		    tab[i+1] = x;
@@ -55,9 +61,9 @@ void maxEtMinB(int *tab,int n)
 	
 	while( i < n ) // n/2-1
 	{
-		cpt++;
 		if( min > tab[i] ) // n or 1
 		{
+			cpt++;
 		    min = tab[i];
 		}
 		
@@ -69,9 +75,9 @@ void maxEtMinB(int *tab,int n)
 	
 	while( i < n ) // n/2-1
 	{
-		cpt++;
 		if( max < tab[i] ) // n or 1
 		{
+			cpt++;
 		    max = tab[i];
 		}
 		
@@ -92,19 +98,20 @@ void maxEtMinB(int *tab,int n)
 
 int main()
 {
-	int i = 0,n = 100;
+	int i = 0,n = 1600000;
 	long int *tab;
 	tab = (long int *)malloc(n*sizeof(long int *));
 	
 	while( i < n )
 	{
-		tab[i] = i+1;
+		tab[i] = i;
 		i++;
 	}
 	
 	// Calculate the time spent by function. 
     clock_t begin = clock();
     
+	//maxEtMinA(tab,n);
 	maxEtMinB(tab,n);
 	
 	clock_t end = clock();
