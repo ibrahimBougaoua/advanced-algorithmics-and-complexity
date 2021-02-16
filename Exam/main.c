@@ -1,27 +1,59 @@
 #include <stdio.h>
 #include <time.h>
 
-// Au pire cas :
-// f(n) = 1 + 1 + n + 1 + 2*n + 2*(n/2+1) + 2*n
-// f(n) = 6n + 5
+int Cle(int x,int i)
+{
+	int k = 0,chiffre;
+	while( x != 0 && i >= k )
+	{   
+		chiffre = x%10;
+	    x = x/10;
+		k++;
+	}
+	return chiffre;
+}
 
-// T(n) = (6n + 5)*Dt
-// Dt = T(n)/(6n + 5)
-
-// Au meilleur cas :
-// f(n) = 1 + 1 + n + 1 + 2*n + 2*2 + 2*n
-// f(n) = 5n + 7
-
-// T(n) = (5n + 7)*Dt
-// Dt = T(n)/(5n + 7)
+void TriAux(int *tab,int n,int k)
+{
+	int i = 1,x;
+	while( i < n )
+	{
+		if( Cle(tab[i],k) <= Cle(tab[i+1],k) )
+		{
+			x = tab[i];
+			tab[i] = tab[i+1];
+			tab[i+1] = x;
+		}
+		i++;
+	}
+}
 
 int main()
 {
-	int n,i,nbr; 
+	int n = 5,i = 1; 
 	
-	printf("Enter you'r number : ");
-	scanf("%d",&n);
+	long int *tab;
+	tab = (long int *)malloc(n*sizeof(long int *));
 	
+	while( i <= n )
+	{
+		printf("%d \n", i+100); 
+		tab[i] = i+100;
+		i++;
+	}
+	
+	puts("");
+	TriAux(tab,n,2);
+	
+	i = 1; 
+	while( i <= n )
+	{
+		printf("%d \n", tab[i]);
+		i++;
+	}
+	
+	printf("x = %d \n", Cle(143,1)); 
+
     // Calculate the time spent by primeNumber(n) 
     clock_t begin = clock();
 	    
