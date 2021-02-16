@@ -40,6 +40,16 @@ void TriAux(int *tab,int n,int i)
 	}
 }
 
+void TriBase(int *tab,int n,int i)
+{
+	int j;
+	
+	for(j=1;j<=i-1;j++)
+	{
+		TriAux(tab,n,j);
+	}
+}
+
 int main()
 {
 	int n = 8,i = 0; 
