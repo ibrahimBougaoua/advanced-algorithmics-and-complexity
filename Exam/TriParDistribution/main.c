@@ -48,28 +48,33 @@ int cle(int x,int i)
 
 }
 
-void TriAux(int *tab,int n,int k)
+void TriAux(int *tab,int n,int i)
 {
     int *t1=(int *)malloc(n*sizeof(int));
     int *t2=(int *)malloc(n*sizeof(int));
-    int i,m,indice=0;
+    
+     int j,m,ind,longeur;
 
-    for(i=0; i<n;i++){
-        t1[i]=cle(tab[i],k);
+    ind = 0;
+    for(j=0; j<n; j++)  
+    {
+        t1[j] = cle(tab[j], i);
     }
 
-    for(i=0; i<=9;i++)
+    for(j=0; j<=9; j++)  
     {
-        for(m=0; m<n;m++){
-                if(t1[m]==i)
-                {
-                   t2[indice]=tab[m];
-                   indice++;
-                }
+        for(m=0; m<n; m++)
+        {
+            if(t1[m] == j )
+            {
+                t2[ind] = tab[m];
+                ind++;
+            }
         }
     }
-    for(m=0; m<n;m++){
-        tab[m]=t2[m];
+    for(m=0 ; m<n; m++)
+    {
+        tab[m] = t2[m];
     }
 }
 
@@ -81,7 +86,6 @@ void TriBase(int *t, int n, int k)
         TriAux(t,n,i);
     }
 }
-
 
 int main()
 {
@@ -98,18 +102,19 @@ int main()
 
   Random(n,t);
 
+/*
   for(i=0;i<n;i++)
   {
  	printf("\t Tab[%d]= %d \n",i,t[i]);
   }
+  */
   
-  max = Max(t,n);
-  k= Length(max);
+  //k= Length(max);
   
   // Calculate the time spent by primeNumber(n) 
   clock_t begin = clock();
     
-  TriBase(t,n,k);
+  TriBase(t,n,9);
   
   clock_t end = clock();
     
@@ -119,11 +124,13 @@ int main()
   
   printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 
+/*
   for(i=0;i<n;i++)
   {
  	  //n valeurs généré aléatoirement
  	  printf("\t Tab[%d]= %d \n",i,t[i]);
   }
+*/
 
     return 0;
 }
