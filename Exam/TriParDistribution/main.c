@@ -12,30 +12,6 @@ void Random(int n, int *t)
     }
 }
 
-int Length(int x)
-{
-    int length;
-    while (x != 0) {
-        x /= 10;
-        length++;
-    }
-    return length;
-}
-
-int Max(int *t,int n)
-{
-    int i,max=0;
-    for(i=0;i<n; i++)
-    {
-        if(max < t[i])
-        {
-            max=t[i];
-        }
-    }
-    return max;
-
-}
-
 int cle(int x,int i)
 {
     int r,j;
@@ -89,7 +65,7 @@ void TriBase(int *t, int n, int k)
 
 int main()
 {
-    int n,i,k,max;
+    int n,i;
     int *t;
     clock_t Debut,Fin;
     float Temp;
@@ -109,7 +85,6 @@ int main()
   }
   */
   
-  //k= Length(max);
   
   // Calculate the time spent by primeNumber(n) 
   clock_t begin = clock();
