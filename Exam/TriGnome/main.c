@@ -34,22 +34,30 @@ void FilUpAsc(int n, int *t)
     }
 }
 
+// Complexité dans le meilleur des cas
+// 2 + 1 + n + 1 + 2*n + 2*n
+// 5*n + 4 
+
+// Complexité dans le pire des cas
+// 3 + 2 + 1 + n + 1 + n + 3*n(n+1)/2 + 2*n(n+1)/2 + 2*n(n+1)/2 + 2*n(n+1)/2 + n(n+1)/2 + n(n+1)/2 + n
+// 11*n(n+1)/2 + 3*n + 7
+
 void tri_gnome(int* T,int n) {
  int i, x; // 2
    i=0; // 1
-   while(i<n)
+   while(i<n) // n + 1
    {
-       if(T[i]<=T[i+1]){
-        i++;
+       if(T[i]<=T[i+1]){ // 2*n
+        i++; // 2*n
        } else {
-           x=T[i];
-           T[i]=T[i+1];
-           T[i+1]=x;
+           x=T[i]; // n
+           T[i]=T[i+1]; // 2*n
+           T[i+1]=x; // 2*n
            
-		   if(i=0){
+		   if(i=0){ // n*n
             i++;
            } else {
-               i--;
+               i--; // n(n+1) 
            }
        }
    }
