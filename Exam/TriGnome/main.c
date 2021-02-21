@@ -3,67 +3,88 @@
 #include <math.h>
 #include <time.h>
 
-void remplirTable_rand(int n, int *t)
+
+// Fil Up Random
+void FilUpRand(int n, int *t)
 {
     int i;
     for(i=0;i<n;i++)
-  {
- 	  //n valeurs généré aléatoirement
-	  t[i]=rand();
-  }
+    {
+	  t[i] = rand();
+    }
 }
 
+// Fil Up Desc
+void FilUpDesc(int n, int *t)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+	  t[i] = n-i;
+    }
+}
 
-void tri_gnome (int* T, int n) {
-   int i, x;
-   i=0;
+// Fil Up Asc
+void FilUpAsc(int n, int *t)
+{
+    int i;
+    for(i=0;i<n;i++)
+	{
+		t[i] = i;
+    }
+}
+
+void tri_gnome(int* T,int n) {
+ int i, x; // 2
+   i=0; // 1
    while(i<n)
    {
        if(T[i]<=T[i+1]){
         i++;
-       }
-       else
-       {
+       } else {
            x=T[i];
            T[i]=T[i+1];
            T[i+1]=x;
-           if(i=1){
+           
+		   if(i=0){
             i++;
-           }else
-           {
+           } else {
                i--;
            }
        }
-
    }
-}
-
+} 
 
 int main()
 {
     int n,i;
     int *t;
-    clock_t Debut,Fin;
-    float Temp;
-
-  printf("donner la taille N= ");
+    clock_t Debut,Fin,Temp;
+    
+  printf("Donner la taille N =");
   scanf("%d",&n);
   t=(int *)malloc(n*sizeof(int));
 
-  remplirTable_rand(n,t);// remplir la table
+  FilUpDesc(n,t);
 
-
-  Debut=clock();
+  // Calculate the time spent by primeNumber(n)
+  clock_t begin = clock();
+  
   tri_gnome(t,n);
-  Fin=clock();
-  Temp=(float)(Fin-Debut)/CLOCKS_PER_SEC;
-  printf("Le temps d'execution du tri gnome est %f\n",Temp);
+  
+  clock_t end = clock();
+  
+  double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    
+  puts(" ");
+  
+  printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 
-  /*for(i=0;i<n;i++)
+  for(i=0;i<n;i++)
   {
- 	  //n valeurs généré aléatoirement
- 	  printf("\t Tab[%d]= %d \n",i,t[i]);
-  }*/
+    printf("%d \n",t[i]);
+  }
 
-    return 0;
+  return 0;
+  
 }
