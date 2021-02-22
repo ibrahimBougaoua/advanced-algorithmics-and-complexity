@@ -3,6 +3,27 @@
 #include <math.h>
 #include <time.h>
 
+/****** tri par distribution *******/
+// les valeurs de test [pire cas]
+// 1000   = 0.000000
+// 2000   = 0.000000
+// 4000   = 0.001000
+// 6000   = 0.001000
+// 8000   = 0.002000
+// 10000  = 0.002000
+// 20000  = 0.006000
+// 40000  = 0.009000
+   
+// les valeurs de test [meilleur cas]
+// 1000   = 0.000000
+// 2000   = 0.001000
+// 4000   = 0.001000
+// 6000   = 0.002000
+// 8000   = 0.002000
+// 10000  = 0.002000
+// 20000  = 0.004000
+// 40000  = 0.010000
+
 void Random(int n, int *t)
 {
     int i;
@@ -76,13 +97,15 @@ int main()
   t=(int *)malloc(n*sizeof(int));
 
   //Random(n,t);
-  Desc(n,t);
+  Asc(n,t);
   //Asc(n,t);
   
+  /*
   for(i=0;i<n;i++)
   {
     printf("%d \n",t[i]);
   }
+  */
   
   // Calculate the time spent by primeNumber(n) 
   clock_t begin = clock();
@@ -97,10 +120,12 @@ int main()
   
   printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 
+  /*
   for(i=0;i<n;i++)
   {
     printf("%d \n",t[i]);
   }
+  */
   
   return 0;
 }
