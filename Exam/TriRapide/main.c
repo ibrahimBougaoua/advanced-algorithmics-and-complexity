@@ -30,44 +30,30 @@ void Desc(int n, int *t)
     }
 }
 
-void Echanger(int *t, int i, int j)
-{
-    int tmp;
-    tmp=t[i];
-    t[i]=t[j];
-    t[j]=tmp;
-}
-
-int Partition(int *t, int deb, int fin)
-{
-    int compt=deb;
-    int pivot=t[deb];
-    int i;
-    for(i=deb+1;i<=fin;i++)
+void triRapide(int* tab, long debut, long fin)
+{   int temp;
+    long gauche = debut-1;
+    long droite = fin+1;
+    int pivot = tab[fin-1];
+    //int pivot = tab[(debut+fin)/2];
+    //int pivot = tab[debut];
+    if(debut >= fin)
+        return;
+    while(1)
     {
-        if(t[i]<pivot)
+        do droite--; while(tab[droite] > pivot);
+        do gauche++; while(tab[gauche] < pivot);
+        if(gauche < droite)
         {
-            compt++;
-            Echanger(t,compt,i);
+            temp = tab[gauche];
+            tab[gauche] = tab[droite];
+            tab[droite] = temp;
         }
+        else break;
     }
-    Echanger(t,compt,deb);
-    return(compt);
-}
 
-void TriRapideBis(int *t, int debut,int fin)
-{
-    if(debut<fin)
-    {
-        int pivot = Partition(t,debut,fin);
-        TriRapideBis(t,debut,pivot-1);
-        TriRapideBis(t,pivot+1,fin);
-    }
-}
-
-void TriRapide(int *t,int n)
-{
-    TriRapideBis(t,0,n-1);
+    triRapide(tab, debut, droite);
+    triRapide(tab, droite+1, fin);
 }
 
 int main()
@@ -91,7 +77,7 @@ int main()
   // Calculate the time spent by primeNumber(n) 
   clock_t begin = clock();
   
-  TriRapide(t,n);
+  triRapide(t,0,n);
   
   clock_t end = clock();
     
