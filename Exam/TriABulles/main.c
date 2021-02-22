@@ -2,6 +2,48 @@
 #include <stdlib.h>
 #include <time.h>
 
+/****** tri Bulle *******/
+// les valeurs de test [pire cas]
+// 1000   = 0.005000
+// 2000   = 0.020000
+// 4000   = 0.089000
+// 6000   = 0.176000
+// 8000   = 0.311000
+// 10000  = 0.501000
+// 20000  = 2.287000
+// 40000  = 7.842000
+   
+// les valeurs de test [meilleur cas]
+// 1000   = 0
+// 2000   = 0
+// 4000   = 0
+// 6000   = 0
+// 8000   = 0
+// 10000  = 0
+// 20000  = 0
+// 40000  = 0
+
+/****** tri Bulle Opt *******/
+// les valeurs de test [pire cas]
+// 1000   = 0.003000
+// 2000   = 0.012000
+// 4000   = 0.081000
+// 6000   = 0.113000
+// 8000   = 0.200000
+// 10000  = 0.314000
+// 20000  = 1.425000
+// 40000  = 5.281000
+
+// les valeurs de test [meilleur cas]
+// 1000   = 0
+// 2000   = 0
+// 4000   = 0
+// 6000   = 0
+// 8000   = 0
+// 10000  = 0
+// 20000  = 0
+// 40000  = 0
+
 // Fil Up Random
 void FilUpRand(int n, int *t)
 {
@@ -95,13 +137,13 @@ int main(int argc, char *argv[])
   scanf("%d",&n);
   t = (int *)malloc(n*sizeof(int));
 
-  FilUpDesc(n,t); // fill up table
+  FilUpAsc(n,t); // fill up table
 
   // Calculate the time spent by primeNumber(n)
   clock_t begin = clock();
   
-  //triBulle(t,n);
-  triBulleOpt(t,n);
+  triBulle(t,n);
+  //triBulleOpt(t,n);
   
   clock_t end = clock();
   
@@ -111,10 +153,12 @@ int main(int argc, char *argv[])
   
   printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 
+  /*
   for(i=0;i<n;i++)
   {
     printf("%d \n",t[i]);
   }
+  */
 
   return 0;
 }
