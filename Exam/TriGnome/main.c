@@ -3,6 +3,26 @@
 #include <math.h>
 #include <time.h>
 
+/****** tri Gnome *******/
+// les valeurs de test [pire cas]
+// 1000   = 0.646000
+// 2000   = 5.359000
+// 4000   = 42.938000
+// 6000   = 148.898000
+// 8000   = 
+// 10000  = 
+// 20000  = 
+// 40000  = 
+   
+// les valeurs de test [meilleur cas]
+// 1000   = 0.004000
+// 2000   = 0.015000
+// 4000   = 0.060000
+// 6000   = 0.136000
+// 8000   = 
+// 10000  = 
+// 20000  = 
+// 40000  = 
 
 // Fil Up Random
 void FilUpRand(int n, int *t)
@@ -73,7 +93,7 @@ int main()
   scanf("%d",&n);
   t=(int *)malloc(n*sizeof(int));
 
-  FilUpDesc(n,t);
+  FilUpAsc(n,t);
 
   // Calculate the time spent by primeNumber(n)
   clock_t begin = clock();
@@ -88,10 +108,12 @@ int main()
   
   printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 
+  /*
   for(i=0;i<n;i++)
   {
     printf("%d \n",t[i]);
   }
+  */
 
   return 0;
   
