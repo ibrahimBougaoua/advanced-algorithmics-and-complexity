@@ -3,39 +3,60 @@
 #include <math.h>
 #include <time.h>
 
-void Random(int n, int *t)
+/****** tri rapide *******/
+// les valeurs de test [pire cas]
+// 1000   = 0.002000
+// 2000   = 0.007000
+// 4000   = 0.024000
+// 6000   = 0.055000
+// 8000   = 0.100000
+// 10000  = 0.156000
+// 20000  = 0.612000
+// 40000  = 
+   
+// les valeurs de test [meilleur cas]
+// 1000   = 
+// 2000   = 
+// 4000   = 
+// 6000   = 
+// 8000   = 
+// 10000  = 
+// 20000  = 
+// 40000  = 
+
+void Random(long n, long *t)
 {
-    int i;
+    long i;
     for(i=0;i<n;i++)
     {
 	   t[i]=rand();
     }
 }
 
-void Asc(int n, int *t)
+void Asc(long n, long *t)
 {
-    int i;
+    long i;
     for(i=0;i<n;i++)
     {
 	   t[i] = i;
     }
 }
 
-void Desc(int n, int *t)
+void Desc(long n, long *t)
 {
-    int i;
+    long i;
     for(i=0;i<n;i++)
     {
 	   t[i] = n-i;
     }
 }
 
-void triRapide(int* tab, long debut, long fin)
+void triRapide(long* tab, long debut, long fin)
 {   int temp;
     long gauche = debut-1;
     long droite = fin+1;
-    int pivot = tab[fin-1];
-    //int pivot = tab[(debut+fin)/2];
+    //int pivot = tab[fin-1];
+    int pivot = tab[(debut+fin)/2];
     //int pivot = tab[debut];
     if(debut >= fin)
         return;
@@ -58,21 +79,23 @@ void triRapide(int* tab, long debut, long fin)
 
 int main()
 {
-  int i,n;
-  int *t;
+  long i,n;
+  long *t;
 
   printf("Donner la taille N = ");
   scanf("%d",&n);
-  t=(int *)malloc(n*sizeof(int));
+  t=(long *)malloc(n*sizeof(long));
 
   //Random(n,t);
   Desc(n,t);
   //Asc(n,t);
   
+  /*
   for(i=0;i<n;i++)
   {
     printf("%d \n",t[i]);
   }
+  */
   
   // Calculate the time spent by primeNumber(n) 
   clock_t begin = clock();
@@ -87,10 +110,12 @@ int main()
   
   printf("Le temps d'execution est temps = %f seconds \n", time_spent); 
 
-  for(i=0;i<n;i++)
+  /*
+  for(i=1;i<=n;i++)
   {
     printf("%d \n",t[i]);
   }
+  */
   
   return 0;
 }

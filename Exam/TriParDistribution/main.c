@@ -3,63 +3,108 @@
 #include <math.h>
 #include <time.h>
 
-void Random(int n, int *t)
+/****** tri par distribution *******/
+// les valeurs de test [pire cas]
+// 1000   = 0.001000
+// 2000   = 0.002000
+// 4000   = 0.003000
+// 6000   = 0.004000
+// 8000   = 0.006000
+// 10000  = 0.008000
+// 20000  = 0.014000
+// 40000  = 0.027000
+   
+// les valeurs de test [meilleur cas] c'est la meme avec pire des cds !!!!
+// 1000   = 0.001000
+// 2000   = 0.002000
+// 4000   = 0.003000
+// 6000   = 0.004000
+// 8000   = 0.006000
+// 10000  = 0.008000
+// 20000  = 0.014000
+// 40000  = 0.027000
+
+
+// Fil Up Random
+void FilUpRand(int n, int *t)
 {
     int i;
     for(i=0;i<n;i++)
     {
-	   t[i]=rand();
+	  t[i] = rand();
+    }
+}
+
+// Fil Up Desc
+void FilUpDesc(int n, int *t)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+	  t[i] = n-i;
+    }
+}
+
+// Fil Up Asc 
+void FilUpAsc(int n, int *t)
+{
+    int i;
+    for(i=0;i<n;i++)
+	{
+		t[i] = i;
     }
 }
 
 int cle(int x,int i)
 {
-    int r,j;
-    for(j =0;j<i;j++)
+    int r,j; // 2
+    for(j =0;j<i;j++) // 3*9 + 1
     {
-    	r = x%10;
-    	x = x/10;
+    	r = x%10; // 2*9
+    	x = x/10; // 2*9
 	}
-	return r;
-
+	return r; // 1
 }
+
+// [7 + 3*n + n + 9*3 + 9*3*3*n + 1 + 9*3*n + 9*3*n + 9*3*2*n + 3*n + 1 + n ]
+// (9*3)*f(n)
 
 void TriAux(int *tab,int n,int i)
 {
-    int *t1=(int *)malloc(n*sizeof(int));
-    int *t2=(int *)malloc(n*sizeof(int));
+    int *t1=(int *)malloc(n*sizeof(int)); // 1
+    int *t2=(int *)malloc(n*sizeof(int)); // 1
     
-     int j,m,ind,longeur;
+    int j,m,ind,longeur; // 3
 
-    ind = 0;
-    for(j=0; j<n; j++)  
-    {
-        t1[j] = cle(tab[j], i);
+    ind = 0; // 1
+    for(j=0; j<n; j++)  // 3*n + 1
+    {           
+        t1[j] = cle(tab[j], i); // n
     }
 
-    for(j=0; j<=9; j++)  
+    for(j=0; j<=9; j++)   // 9*3
     {
-        for(m=0; m<n; m++)
+        for(m=0; m<n; m++) // 9*3*3*(n) + 1
         {
-            if(t1[m] == j )
+            if(t1[m] == j ) // 9*3*n
             {
-                t2[ind] = tab[m];
-                ind++;
+                t2[ind] = tab[m]; // 9*3*n
+                ind++; // 9*3*2*n
             }
         }
     }
-    for(m=0 ; m<n; m++)
+    for(m=0 ; m<n; m++) // 3*n + 1
     {
-        tab[m] = t2[m];
+        tab[m] = t2[m]; // n
     }
 }
 
 void TriBase(int *t, int n, int k)
 {
-    int i;
-    for(i=1; i<=k; i++)
+    int i; // 1
+    for(i=1; i<=k; i++) // 9*3 + 1
     {
-        TriAux(t,n,i);
+        TriAux(t,n,i); // (9*3)*f(n)
     }
 }
 
@@ -76,15 +121,14 @@ int main()
   scanf("%d",&n);
   t=(int *)malloc(n*sizeof(int));
 
-  Random(n,t);
+  FilUpAsc(n,t);
 
-/*
+  /*
   for(i=0;i<n;i++)
   {
  	printf("\t Tab[%d]= %d \n",i,t[i]);
   }
   */
-  
   
   // Calculate the time spent by primeNumber(n) 
   clock_t begin = clock();

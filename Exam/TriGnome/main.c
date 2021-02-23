@@ -5,24 +5,23 @@
 
 /****** tri Gnome *******/
 // les valeurs de test [pire cas]
-// 1000   = 0.646000
-// 2000   = 5.359000
-// 4000   = 42.938000
-// 6000   = 148.898000
-// 8000   = 
-// 10000  = 
-// 20000  = 
-// 40000  = 
+// 1000   = 0,005000
+// 2000   = 0,020000
+// 4000   = 0,089000
+// 6000   = 0,176000
+// 8000   = 0,311000
+// 10000  = 0,501000
+// 20000  = 2,287000
+// 40000  = 7,842000
    
 // les valeurs de test [meilleur cas]
-// 1000   = 0.004000
-// 2000   = 0.015000
-// 4000   = 0.060000
-// 6000   = 0.136000
-// 8000   = 
-// 10000  = 
-// 20000  = 
-// 40000  = 
+// 400000    = 0,002000
+// 800000    = 0,003000
+// 1000000   = 0,005000
+// 2000000   = 0,007000
+// 4000000   = 0,014000
+// 8000000   = 0,035000
+// 10000000  = 0,046000
 
 // Fil Up Random
 void FilUpRand(int n, int *t)
@@ -59,29 +58,29 @@ void FilUpAsc(int n, int *t)
 // 5*n + 4 
 
 // Complexité dans le pire des cas
-// 3 + 2 + 1 + n + 1 + n + 3*n(n+1)/2 + 2*n(n+1)/2 + 2*n(n+1)/2 + 2*n(n+1)/2 + n(n+1)/2 + n(n+1)/2 + n
-// 11*n(n+1)/2 + 3*n + 7
+// 2 + 1 + n*n + 1 + 2*n*n + 2*n + n*n + 2*n*n + 2*n*n + n*n + n*n + n*n
+// 11n*n+2*n+4
 
 void tri_gnome(int* T,int n) {
  int i, x; // 2
    i=0; // 1
-   while(i<n) // n + 1
+   while(i<n) // n*n + 1
    {
-       if(T[i]<=T[i+1]){ // 2*n
+       if(T[i]<=T[i+1]){ // 2*n*n
         i++; // 2*n
        } else {
-           x=T[i]; // n
-           T[i]=T[i+1]; // 2*n
-           T[i+1]=x; // 2*n
+           x=T[i]; // n*n
+           T[i]=T[i+1]; // 2*n*n
+           T[i+1]=x; // 2*n*n
            
 		   if(i=0){ // n*n
-            i++;
+            i++; // n*n
            } else {
-               i--; // n(n+1) 
+               i--; // n*n
            }
        }
    }
-} 
+}
 
 int main()
 {
@@ -93,7 +92,7 @@ int main()
   scanf("%d",&n);
   t=(int *)malloc(n*sizeof(int));
 
-  FilUpAsc(n,t);
+  FilUpDesc(n,t);
 
   // Calculate the time spent by primeNumber(n)
   clock_t begin = clock();
